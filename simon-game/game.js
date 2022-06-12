@@ -3,34 +3,36 @@ var userClickedPattern = [];
 
 var buttonColours = ["red", "blue", "green", "yellow"];
 
-$(document).keydown(touchdown);
+$(document).on("keydown", touchdown);
 
 function touchdown(e){
     var level = 0;
     gamePattern = [];
     userClickedPattern = [];
     $("h1").text("Level 0");
-    $(document).unbind();
+
+    $(document).off("keydown");
+
+    $(".btn").on("click", function(){
+        var userChosenColour = $(this).attr("id");
+        userClickedPattern.push(userChosenColour);
+    
+        playSound(userChosenColour);
+     
+        animatePress(userChosenColour);
+    
+        checkAnswer();
+    
+        if(userClickedPattern.length == gamePattern.length){
+            setTimeout(nextSequence, 1000);
+            userClickedPattern = [];
+        }
+        
+        return userChosenColour;
+    });
+    
     setTimeout(nextSequence, 1000);
 }
-
-$(".btn").click(function(){
-    var userChosenColour = $(this).attr("id");
-    userClickedPattern.push(userChosenColour);
-
-    playSound(userChosenColour);
- 
-    animatePress(userChosenColour);
-
-    checkAnswer();
-
-    if(userClickedPattern.length == gamePattern.length){
-        setTimeout(nextSequence, 1000);
-        userClickedPattern = [];
-    }
-    
-    return userChosenColour;
-});
 
 
 function nextSequence() {
@@ -66,6 +68,8 @@ function updateLevel(){
     var leveltext = $("h1").text();
     var level = leveltext.split(" ");
     var newLevel = level[level.length - 1];
+
+    if(newLevel === NaN) gameOver();
     newLevel++;
     $("h1").text("Level "+ newLevel);
 }
@@ -90,10 +94,11 @@ function gameOver(){
     $("h1").text("Game Over! Press Any Key To Restart");
     $("body").addClass("game-over");
 
+    $(".btn").off("click");
+    $(document).on("keydown", touchdown);
+
     setTimeout(function(){
     $("body").removeClass("game-over");
     }, 200);
-
-    //$(".btn").unbind();
-    $(document).keydown(touchdown);
+    
 }
