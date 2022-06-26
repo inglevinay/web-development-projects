@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://ivinay718:alottodo@cluster0.5yrvv.mongodb.net/todolistDB");
+mongoose.connect("mongodb+srv://<username>:<password>@cluster0.5yrvv.mongodb.net/todolistDB");
 
 const taskSchema = {
   task: String
