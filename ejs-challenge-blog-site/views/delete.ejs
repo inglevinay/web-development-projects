@@ -1,0 +1,16 @@
+<%- include("partials/header") -%>
+
+<h1> Delete</h1>
+
+<form action="/delete" method="post">
+<% postsList.forEach(list => { %>
+<h2><%= list.postTitle %><input type="checkbox" name="postcheck" value=<%= list.postId %>></h2> 
+<p><%= list.postBody.slice(0, 50) %>
+    <a href= <%= "/posts/" + list.postId %> >(Read more)</a> 
+</p>
+<% }); %>
+<hr>
+<button type="submit" class="delete-button btn btn-danger">Delete</button>
+</form>
+
+<%- include("partials/footer") -%> 

@@ -1,0 +1,16 @@
+<%- include("partials/header") %>
+
+<h1>Login</h1>
+(pss.. the username is "admin" and the password is "admin")
+
+<form action="/auth" method="post">
+    <label for="username">Username</label> <br>
+    <input type="text" class="form-control" name="username" id="username"> <br>
+
+    <label for="password">Password</label> <br>
+    <input type="password" class="form-control" name="password" id="password"> <br>
+ 
+    <button class="btn btn-primary" type="submit">Publish</button>
+</form>
+
+<%- include("partials/footer") %>
