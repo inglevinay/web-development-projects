@@ -1,0 +1,28 @@
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* width: 100vw; */
+}
+
+main {
+  width: 100vw;
+  color: white;
+  z-index: 99;
+  position: absolute;
+  width: 100%;
+  margin: 0px auto;
+  padding: 120px 0px;
+  height: 1000vh;
+  width: 50vw;
+  filter: blur(20px);
+
+}
+
+.content {
+  height: 1000vh;
+  width: 30vw;
+  position: absolute;
+  backdrop-filter: blur(10px);
+  /* border: 10px solid white; */
+}
